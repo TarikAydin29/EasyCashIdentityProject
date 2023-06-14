@@ -63,6 +63,9 @@ namespace EasyCashIdentityProject.MVC.Controllers
                     client.Send(mimeMessage);
                     client.Disconnect(true);
 
+                    TempData["Mail"] = appUserRegisterDto.Email;
+                    //Email adresini confirmemail controllerına göndermek için kullandık.
+                    HttpContext.Session.SetString("Email", appUserRegisterDto.Email);
 
                     return RedirectToAction("Index", "ConfirmMail");
                 }

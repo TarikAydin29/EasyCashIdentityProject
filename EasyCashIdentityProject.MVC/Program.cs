@@ -19,7 +19,8 @@ builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Contex
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-
+builder.Services.AddSession();
+builder.Services.AddHttpContextAccessor();
 
 
 var app = builder.Build();
@@ -38,7 +39,7 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseSession();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
